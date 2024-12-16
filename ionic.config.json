@@ -1,0 +1,7 @@
+{
+  "name": "Ankamantatra",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
