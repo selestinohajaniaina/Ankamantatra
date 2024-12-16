@@ -29,19 +29,27 @@ ion-header {
   align-items: center;
 }
 
-#video-container {
+swiper {
   width: 100%;
   height: 100vh;
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    background: red;
+  }
+
+}
+
+#video-container {
+  height: 100%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-}
-
-#video-container img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 .action-buttons {
@@ -61,16 +69,12 @@ ion-header {
   transition: transform 0.2s;
 }
 
-.action-buttons .icon:hover {
+.action-buttons .icon:active {
   transform: scale(1.2);
 }
 
+
 .ank {
-  position: absolute;
-  z-index: 10;
-  top: 0;
-  width: 100%;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -110,3 +114,17 @@ ion-header {
   }
 }
 
+.nav-button {
+  position: absolute;
+  z-index: 20;
+  bottom: 0;
+  left: 10px;
+  transform: scale(1.5);
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .nav-button {
+    display: none;
+  }
+}
