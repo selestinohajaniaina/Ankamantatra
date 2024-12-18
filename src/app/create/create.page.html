@@ -1,0 +1,24 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="secondary">
+    <ion-title>Hanontany</ion-title>
+    <ion-back-button slot="start" defaultHref="/"> back</ion-back-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  
+  <ion-card>
+    <ion-card-content>
+      <ion-textarea [(ngModel)]="textContent" (change)="textContentChange()" label="Inona ary izany? ..." [autoGrow]="true" labelPlacement="floating" fill="outline" placeholder="Adikao eto..."></ion-textarea>
+        <ion-select label="Sokajy" placeholder="Faritra">
+          <ion-select-option value="Tsimihety">Tsimihety</ion-select-option>
+          <ion-select-option value="Antsimo-andrefana">Antsimo-andrefana</ion-select-option>
+          <ion-select-option value="Antananarivo">Antananarivo</ion-select-option>
+        </ion-select>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-button expand="block" color="secondary">Alefa</ion-button> 
+  <ion-button fill="outline" color="secondary" expand="block" (click)="cancel()">Hiverina</ion-button> 
+  
+</ion-content>
