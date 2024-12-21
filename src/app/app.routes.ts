@@ -19,4 +19,24 @@ export const routes: Routes = [
     path: 'login',
     loadComponent: () => import('./login/login.page').then( m => m.LoginPage)
   },
+  {
+    path: 'login-pro',
+    loadComponent: () => import('./login-pro/login-pro.page').then( m => m.LoginProPage)
+  },
+  {
+    path: 'contact',
+    loadComponent: () => import('./contact/contact.page').then( m => m.ContactPage)
+  },
+  {
+    path: 'saved',
+    loadComponent: () => import('./saved/saved.page').then( m => m.SavedPage)
+  },
+  {
+    path: 'profil',
+    loadComponent: () => import('./profil/profil.page').then( m => m.ProfilPage)
+  },
+  {
+    path: 'rule',
+    loadComponent: () => import('./rule/rule.page').then( m => m.RulePage)
+  },
 ];

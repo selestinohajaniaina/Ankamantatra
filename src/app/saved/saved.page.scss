@@ -1,0 +1,49 @@
+ion-content {
+    --background: var(--ankamantatra-theme);
+}
+
+ion-title {
+    font-family: Playwrite;
+}
+
+ion-toolbar {
+    --background: var(--ankamantatra-theme-color);
+}
+
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+}
+
+ion-card {
+    max-width: 200px;
+    width: 40%;
+    height: 45%;
+    background: transparent;
+}
+
+ion-card-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background: var(--ankamantatra-theme-color-opacity);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    
+    p {
+        // white-space: nowrap;
+        max-height: 100%;
+        overflow: hidden;
+        text-align: justify;
+        text-overflow: ellipsis;
+        font-family: 'Playwrite';
+
+        span {
+            font-family: 'Coustard';
+            font-weight: bold;
+            font-size: 14pt;
+        }
+    }
+}

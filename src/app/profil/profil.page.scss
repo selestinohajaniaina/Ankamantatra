@@ -1,0 +1,34 @@
+ion-content {
+    --background: var(--ankamantatra-theme);
+}
+
+ion-title {
+    font-family: Playwrite;
+}
+
+ion-toolbar {
+    --background: var(--ankamantatra-theme-color);
+}
+
+div {
+    width: 100%;
+    padding: 5px;
+    
+    ion-input, ion-button {
+        font-family: Playwrite;
+        margin-top: 5px;
+    }
+
+    ion-button {
+        text-transform: capitalize;
+        color: white;
+    }
+
+    .submit {
+        --background: var(--ankamantatra-theme-color);
+    }
+
+    .annuler {
+        --border-color: var(--ankamantatra-theme-color);
+    }
+}

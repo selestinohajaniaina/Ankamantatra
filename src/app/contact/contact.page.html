@@ -1,0 +1,19 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Hilaza olana</ion-title>
+    <ion-back-button slot="start" defaultHref="/"> back</ion-back-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-card>
+    <ion-card-content>
+      <ion-textarea color="success" [(ngModel)]="feedBackMessage" label="Manana olana na sosokevitra ? ..." [autoGrow]="true" labelPlacement="floating" fill="outline" placeholder="Adikao eto..."></ion-textarea>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-button expand="block" class="publier" (click)="send()">Alefa</ion-button> 
+  <ion-button fill="outline" class="annuler" [routerLink]="'/'" expand="block">Hiverina</ion-button> 
+  
+</ion-content>

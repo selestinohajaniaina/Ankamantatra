@@ -1,0 +1,15 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-back-button slot="start" defaultHref="/"></ion-back-button>
+    <ion-title>Fitsipika</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card *ngFor="let item of rules">
+    <ion-card-content>
+      <ion-card-title>{{ item.title }}</ion-card-title>
+      <ion-text>{{ item.content }}</ion-text>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -9,7 +9,7 @@ ion-header {
   width: 90%;
   border-radius: 0.5pc;
   height: 50px;
-  background: rgba(219, 219, 219, 0.3);
+  background: var(--ankamantatra-theme-opacity);
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
   display: flex;

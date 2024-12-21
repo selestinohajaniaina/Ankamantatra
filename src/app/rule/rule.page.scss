@@ -1,0 +1,17 @@
+ion-content {
+    --background: var(--ankamantatra-theme);
+}
+
+ion-title, ion-text, ion-card-title {
+    font-family: Playwrite;
+}
+
+ion-toolbar {
+    --background: var(--ankamantatra-theme-color);
+}
+
+ion-card {
+    background: transparent;
+    box-shadow: none;
+    text-align: justify;
+}

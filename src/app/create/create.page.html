@@ -1,5 +1,5 @@
 <ion-header [translucent]="true">
-  <ion-toolbar color="secondary">
+  <ion-toolbar>
     <ion-title>Hanontany</ion-title>
     <ion-back-button slot="start" defaultHref="/"> back</ion-back-button>
   </ion-toolbar>
@@ -9,16 +9,15 @@
   
   <ion-card>
     <ion-card-content>
-      <ion-textarea [(ngModel)]="textContent" (change)="textContentChange()" label="Inona ary izany? ..." [autoGrow]="true" labelPlacement="floating" fill="outline" placeholder="Adikao eto..."></ion-textarea>
-        <ion-select label="Sokajy" placeholder="Faritra">
-          <ion-select-option value="Tsimihety">Tsimihety</ion-select-option>
-          <ion-select-option value="Antsimo-andrefana">Antsimo-andrefana</ion-select-option>
-          <ion-select-option value="Antananarivo">Antananarivo</ion-select-option>
+      <ion-card-subtitle>Mametraha ankamantatra ho an'ireo namana mpikambana ato.</ion-card-subtitle> <br>
+      <ion-textarea color="success" [(ngModel)]="textContent" (change)="textContentChange()" label="Inona ary izany? ..." [autoGrow]="true" labelPlacement="floating" fill="outline" placeholder="Adikao eto..."></ion-textarea>
+        <ion-select label="Sokajy" *ngIf="categoryList" [(ngModel)]="category" placeholder="Faritra">
+          <ion-select-option *ngFor="let item of categoryList" [value]="item.id">{{item.region}}</ion-select-option>
         </ion-select>
     </ion-card-content>
   </ion-card>
 
-  <ion-button expand="block" color="secondary">Alefa</ion-button> 
-  <ion-button fill="outline" color="secondary" expand="block" (click)="cancel()">Hiverina</ion-button> 
+  <ion-button expand="block" class="publier" (click)="createAnkamantatra()">Alefa</ion-button> 
+  <ion-button fill="outline" class="annuler" expand="block" (click)="cancel()">Hiverina</ion-button> 
   
 </ion-content>

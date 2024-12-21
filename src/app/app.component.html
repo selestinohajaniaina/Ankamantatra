@@ -1,10 +1,10 @@
-<ion-app>
+<ion-app *ngIf="connected">
   <ion-split-pane contentId="main-content">
     <ion-menu contentId="main-content" type="overlay">
       <ion-content>
         <ion-list id="inbox-list">
           <ion-list-header>Anaranao</ion-list-header>
-          <ion-note>alarobia 10 des 2024 12 sy 50min</ion-note>
+          <ion-note>Kaonty tsotra</ion-note>
 
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
             <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
@@ -17,9 +17,9 @@
         <ion-list id="labels-list">
           <ion-list-header>Hafa</ion-list-header>
 
-          <ion-item *ngFor="let label of labels" lines="none">
-            <ion-icon aria-hidden="true" slot="start" ios="bookmark-outline" md="bookmark-sharp"></ion-icon>
-            <ion-label>{{ label }}</ion-label>
+          <ion-item *ngFor="let label of labels" lines="none" [routerLink]="label.url">
+            <ion-icon aria-hidden="true" slot="start" ios="{{label.icon}}-outline" md="{{label.icon}}-sharp"></ion-icon>
+            <ion-label>{{ label.title }}</ion-label>
           </ion-item>
         </ion-list>
       </ion-content>
@@ -27,3 +27,8 @@
     <ion-router-outlet id="main-content"></ion-router-outlet>
   </ion-split-pane>
 </ion-app>
+
+<div id="container" *ngIf="!connected">
+  <ion-spinner name="lines-sharp"></ion-spinner> <br>
+  <ion-text>Verification ...</ion-text>
+</div>

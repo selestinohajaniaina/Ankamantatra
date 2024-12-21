@@ -26,6 +26,10 @@
         .connect {
             --background: var(--ankamantatra-theme-color);
         }
+
+        .annuler {
+            --border-color: var(--ankamantatra-theme-color);
+        }
     }
 
     ion-title {

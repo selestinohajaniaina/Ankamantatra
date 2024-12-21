@@ -14,7 +14,7 @@
       <div id="video-container" style="background-image: url('assets/img/exemple.jpeg');">
         <div class="action-buttons">
           <ion-icon name="heart" class="icon"></ion-icon>
-          <ion-icon name="chatbubbles" class="icon"></ion-icon>
+          <ion-icon name="chatbubbles" (click)="answer()" class="icon"></ion-icon>
           <ion-icon name="bookmark" class="icon"></ion-icon>
         </div>
         <div class="ank">
@@ -27,6 +27,12 @@
           </p>
           <p class="apos apos2">"</p>
         </div>
+      </div>
+    </ng-template>
+
+    <ng-template swiperSlide>
+      <div id="video-container">
+        <ion-spinner name="lines-sharp"></ion-spinner>
       </div>
     </ng-template>
 

@@ -1,11 +1,12 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IonHeader, IonToolbar, IonButtons, IonMenuButton, IonTitle, IonContent, IonIcon } from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonButtons, IonMenuButton, IonTitle, IonContent, IonIcon, IonSpinner } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { chatbubbles, heart, bookmark, arrowUpCircleOutline, arrowDownCircleOutline } from 'ionicons/icons';
 import { SwiperModule } from 'swiper/angular';
 import SwiperCore, { Navigation } from 'swiper';
 import { CommonModule } from '@angular/common';
+import { AlertController } from '@ionic/angular';
 
 SwiperCore.use([Navigation]);
 
@@ -16,7 +17,7 @@ addIcons({ heart, chatbubbles, bookmark, arrowUpCircleOutline, arrowDownCircleOu
   templateUrl: './folder.page.html',
   styleUrls: ['./folder.page.scss'],
   standalone: true,
-  imports: [IonHeader, IonToolbar, IonButtons, IonMenuButton, IonTitle, IonContent, IonIcon, SwiperModule, CommonModule],
+  imports: [IonHeader, IonToolbar, IonButtons, IonMenuButton, IonTitle, IonContent, IonIcon, SwiperModule, CommonModule, IonSpinner],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class FolderPage implements OnInit {
@@ -24,7 +25,9 @@ export class FolderPage implements OnInit {
   private activatedRoute = inject(ActivatedRoute);
   public data: {question: string}[] = [];
 
-  constructor() {}
+  constructor(
+    private alert: AlertController
+  ) {}
 
   ngOnInit() {
     this.folder = this.activatedRoute.snapshot.paramMap.get('id') as string;
@@ -38,6 +41,19 @@ export class FolderPage implements OnInit {
       {question: "Tsy basy mipoaka, tsy tafondro mirefotra nefa feno ra Madagasikara."},
       {question: "Teraka mba lava ihany, antitra vao mitsipozy."},
     ]
+  }
+
+  async answer() {
+    const alert = await this.alert.create({
+      message: 'Inona ny valiny ?',
+      inputs: [{id: 'answer'}],
+      buttons: [
+        {role: 'cancel', text: 'Averina'},
+        {role: 'valider', text: 'Hamarinina'},
+      ],
+    });
+
+    await alert.present();
   }
 
 }
