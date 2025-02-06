@@ -8,21 +8,23 @@
 </ion-header>
 
 <div class="ion-content" scroll-y="false">
-  <swiper [slidesPerView]="1" [direction]="'vertical'" #swiperInstance>
+  <swiper [slidesPerView]="1" [direction]="'vertical'" (slideChange)="onSlideChange($event)" #swiperInstance>
 
     <ng-template *ngFor="let item of data" swiperSlide>
       <div id="video-container" style="background-image: url('assets/img/exemple.jpeg');">
         <div class="action-buttons">
-          <ion-icon name="heart" class="icon"></ion-icon>
-          <ion-icon name="chatbubbles" (click)="answer()" class="icon"></ion-icon>
-          <ion-icon name="bookmark" class="icon"></ion-icon>
+          <div class="icon" (click)="like(item.id, $event)"><ion-icon name="heart"></ion-icon> <span>{{ item.Reactions.length == 0 ? '' : item.Reactions.length }}</span></div>
+          <div class="icon" (click)="answer(item, $event)"><ion-icon name="chatbubbles"></ion-icon> <span>{{ item.Responses.length == 0 ? '' : item.Responses.length }}</span></div>
+          <div class="icon" (click)="save(item.id, $event)"><ion-icon name="bookmark" class="icon"></ion-icon> <span>{{ item.Enregistrements.length == 0 ? '' : item.Enregistrements.length }}</span> </div>
+          
+          
         </div>
         <div class="ank">
           <div class="ask">inona ary izany oh?</div>
           <p class="apos apos1">"</p>
           <p class="contenu">
             <span>
-              {{ item.question }}
+              {{ item.content }}
             </span>
           </p>
           <p class="apos apos2">"</p>
@@ -30,8 +32,8 @@
       </div>
     </ng-template>
 
-    <ng-template swiperSlide>
-      <div id="video-container">
+    <ng-template class="loading" swiperSlide>
+      <div id="video-container" class="wait-loading">
         <ion-spinner name="lines-sharp"></ion-spinner>
       </div>
     </ng-template>

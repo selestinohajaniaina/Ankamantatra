@@ -1,10 +1,10 @@
 <ion-app *ngIf="connected">
   <ion-split-pane contentId="main-content">
-    <ion-menu contentId="main-content" type="overlay">
+    <ion-menu *ngIf="menuShow" contentId="main-content" type="overlay">
       <ion-content>
         <ion-list id="inbox-list">
-          <ion-list-header>Anaranao</ion-list-header>
-          <ion-note>Kaonty tsotra</ion-note>
+          <ion-list-header>{{ nom }}</ion-list-header>
+          <ion-note>{{ email ? email : 'Kaonty tsotra' }}</ion-note>
 
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
             <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
@@ -29,6 +29,6 @@
 </ion-app>
 
 <div id="container" *ngIf="!connected">
-  <ion-spinner name="lines-sharp"></ion-spinner> <br>
+  <ion-spinner name="lines-sharp"></ion-spinner>
   <ion-text>Verification ...</ion-text>
 </div>

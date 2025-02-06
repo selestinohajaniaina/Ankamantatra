@@ -26,9 +26,17 @@ export class ServiceService {
   createUser(name: string) {
     return this.http.post(`${this.url}/users`, {name: name});
   }
+  
+  findMyProfil() {
+    return this.http.get(`${this.url}/users/profil`, {headers: { authorization: this.token }});
+  }
 
   findAllUsers() {
     return this.http.get(`${this.url}/users`, {headers: { authorization: this.token }});
+  }
+
+  loginPro(email: string, password: string) {
+    return this.http.post(`${this.url}/users/profil`, {email: email, password: password});
   }
 
   sendFeedBack(message: string) {
@@ -38,15 +46,48 @@ export class ServiceService {
     );
   }
 
-  createAnkamantatra(text: string, categoryId: number) {
+  createAnkamantatra(text: string, TextResponse: string, categoryId: number) {
     return this.http.post(`${this.url}/ankamantatras`, 
-      {content: text, category: categoryId},
+      {content: text, response: TextResponse, category: categoryId},
+      { headers: {authorization: this.token}}
+    );
+  }
+
+  findAnkamantatras() {
+    return this.http.get(`${this.url}/ankamantatras`, 
+      { headers: {authorization: this.token}}
+    );
+  }
+
+  saveAnkamantatras(ankamantatraId: number) {
+    return this.http.post(`${this.url}/enregistrements`, 
+      {ankamantatra: ankamantatraId},
+      { headers: {authorization: this.token}}
+    );
+  }
+
+  findAllSaved() {
+    return this.http.get(`${this.url}/enregistrements`, 
       { headers: {authorization: this.token}}
     );
   }
   
   findAllCategory() {
     return this.http.get(`${this.url}/category`, 
+      { headers: {authorization: this.token}}
+    );
+  }
+
+  like(ankamantatraId: number) {
+    return this.http.post(`${this.url}/reactions`, 
+      {ankamantatra: ankamantatraId},
+      { headers: {authorization: this.token}}
+    );
+  }
+
+  saveAnswer(ankamantatraId: number, response: string) {
+    return this.http.post(`${this.url}/responses`, 
+      {ankamantatra: ankamantatraId, valinteny: response},
       { headers: {authorization: this.token}}
     );
   }

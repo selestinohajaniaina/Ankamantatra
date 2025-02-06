@@ -127,6 +127,9 @@ ion-item.selected, ion-list-header {
 
 #container {
   height: 100vh;
-  display: grid;
-  place-content: center;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 10% auto;
 }

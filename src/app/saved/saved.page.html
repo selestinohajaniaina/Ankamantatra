@@ -7,18 +7,27 @@
 
 <ion-content [fullscreen]="true">
 
-  <div class="content">
+  <div *ngIf="data && data.length!=0" class="content">
 
-    <ion-card>
+    <ion-card *ngFor="let item of data">
       <ion-card-content>
+        <div class="badge"> <ion-badge><ion-icon name="heart-outline"></ion-icon> 99</ion-badge> <ion-badge color="success"><ion-icon name="chatbubbles-outline"></ion-icon> 99</ion-badge></div>
         <p>
           <span>"</span>
-          {{ truncateWords("Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam maiores minima suscipit iusto sint. Qui alias perferendis labore, magni tenetur quasi eligendi deleniti neque reiciendis accusamus, quam, ea iure soluta asperiores eos! Ad, sit. Exercitationem tenetur voluptate ipsa repudiandae quo maxime necessitatibus, reprehenderit temporibus") }}
+          {{ truncateWords(item.Ankamantatra.content) }}
           <span>"</span>
         </p>
+        <div class="profil"> <p>{{ truncateName(item.User.name) }}</p></div>
       </ion-card-content>
     </ion-card>
 
+  </div>
+
+  <div *ngIf="data && data.length == 0" class="content-vide">
+    <div>
+      <ion-icon size="large" name="bookmark-outline"></ion-icon>
+      <p>Tsy mbola nisy notahirizinao</p>
+    </div>
   </div>
 
 </ion-content>
