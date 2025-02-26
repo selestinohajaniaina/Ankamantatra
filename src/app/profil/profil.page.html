@@ -11,7 +11,7 @@
     <ion-input [(ngModel)]="name" label="Anarana hoentinao" color="success" label-placement="floating" fill="outline" placeholder="Adikao eto ..."></ion-input>
     <ion-input [(ngModel)]="email" label="Adiresy mailaka" color="success" label-placement="floating" fill="outline" placeholder="Adikao eto ..."></ion-input>
     <ion-input [(ngModel)]="password" label="Teny miafina" color="success" label-placement="floating" fill="outline" placeholder="Adikao eto ..."></ion-input>
-    <ion-button expand="block" class="submit">Ovaina</ion-button>
+    <ion-button expand="block" class="submit" (click)="update()">Ovaina</ion-button>
     <ion-button expand="block" class="annuler" fill="outline" [routerLink]="'/'">Hiverina</ion-button>
   </div>
 </ion-content>

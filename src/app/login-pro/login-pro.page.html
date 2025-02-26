@@ -4,8 +4,11 @@
     <ion-title>Ankamantatra</ion-title>
     <ion-input [(ngModel)]="email" label="Adiresy mailaka" color="success" label-placement="floating" fill="outline" placeholder="Adikao eto ..."></ion-input>
     <ion-input [(ngModel)]="password" label="Teny miafina" color="success" label-placement="floating" fill="outline" placeholder="Adikao eto ..."></ion-input>
-    <ion-button expand="block" (click)="login()" class="connect">Hiditra</ion-button>
+    <ion-button expand="block" (click)="login()" class="connect">
+      Hiditra
+    </ion-button>
     <ion-button expand="block" [routerLink]="'/login'" class="annuler" fill="outline">Hiditra tsotra</ion-button>
   </div>
   <div class="div-bottom">Hadino teny miafina ?</div>
 </div>
+<app-loading *ngIf="showLoading"/>

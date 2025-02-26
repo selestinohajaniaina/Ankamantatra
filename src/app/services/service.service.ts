@@ -9,7 +9,7 @@ import { ToastController } from '@ionic/angular';
 export class ServiceService {
 
   private url: string = environment.url;
-  private token: any;
+  public token: any;
 
   constructor(private http: HttpClient, private toast: ToastController) {
     this.token = localStorage.getItem('authorization');
@@ -29,6 +29,13 @@ export class ServiceService {
   
   findMyProfil() {
     return this.http.get(`${this.url}/users/profil`, {headers: { authorization: this.token }});
+  }
+
+  updateMyProfil(name: string, email: string, password: string) {
+    return this.http.put(`${this.url}/users/profil`,
+      {name: name, email: email, password: password},
+      {headers: { authorization: this.token }}
+    );
   }
 
   findAllUsers() {

@@ -7,6 +7,7 @@ import { ServiceService } from '../services/service.service';
 import { HttpClientModule } from '@angular/common/http';
 import { LoadingController, AlertController } from '@ionic/angular';
 import { catchError, of } from 'rxjs';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-login',
@@ -25,11 +26,13 @@ export class LoginPage implements OnInit {
   }
 
   async login() {
+    console.log('ckiker ito');
     
-    const loading = this.loading.create({
-      message: 'Fanamarinana ...',
-    });
-    (await loading).present();
+    const loading = await this.loading.create({ message: 'Test ...' });
+    await loading.present();
+    setTimeout(async () => { await loading.dismiss(); }, 3000);
+    
+    console.log('tonga eto ito');
 
     if(this.username) {
       this.service.createUser(this.username)
@@ -42,7 +45,8 @@ export class LoginPage implements OnInit {
         if(result && result.status) {
           (await loading).dismiss();
           localStorage.setItem('authorization', result.token);
-          // this.router.navigate(['/']);
+          this.service.token = result.token;
+          this.router.navigate(['/']);
           // reload the page
         } else {
           (await loading).dismiss();

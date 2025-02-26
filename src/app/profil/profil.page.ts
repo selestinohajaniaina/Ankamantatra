@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonBackButton, IonInput, IonButton } from '@ionic/angular/standalone';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { User } from '../interfaces/User';
 import { ServiceService } from '../services/service.service';
 
@@ -20,7 +20,7 @@ export class ProfilPage implements OnInit {
   public email!: string;
   public password!: string;
 
-  constructor(private service: ServiceService) { }
+  constructor(private service: ServiceService, private router: Router) { }
 
   ngOnInit() {
     this.myData();
@@ -33,6 +33,20 @@ export class ProfilPage implements OnInit {
         this.name = this.user.name;
         this.email = this.user.email;
       });
+  }
+
+  update() {
+    if(this.name && this.email && this.password) {
+      this.service.updateMyProfil(this.name, this.email, this.password)
+        .subscribe((result: any) => {
+          if(result && result.status) {
+            this.service.showToast('Tontosa ny fanovana ...');
+            this.router.navigate(['/']);
+          }
+        })
+    } else {
+      this.service.showToast('Fenoy daholo ...');
+    }
   }
 
 }

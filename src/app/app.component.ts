@@ -24,20 +24,15 @@ export class AppComponent {
     { title: 'Fampahafantarana', url: '/folder/fampahafantarana', icon: 'notifications' },
     { title: 'Hilaza olana', url: 'contact', icon: 'warning' },
   ];
-  public listes = [
-    {title: 'Fitsipika', url: '/rule', icon: 'document-lock'},
-    {title: 'Kaonty', url: '/profil', icon: 'person-circle'},
-    {title: 'Hiala', url: '', icon: 'log-out'},
-  ];
   public liste = [
     {title: 'Fitsipika', url: '/rule', icon: 'document-lock'},
     {title: 'Kaonty', url: '/profil', icon: 'person-circle'},
   ];
   public connected: boolean = false;
-  public menuShow: boolean = false;
   public labels: { title: string; url: string; icon: string; }[] = this.liste;
   public nom!: string;
   public email!: string;
+  public showLogout: boolean = false;
 
   constructor(private router: Router, private service: ServiceService, private alert: AlertController) {
     addIcons({ earthOutline, earthSharp, paperPlaneOutline, paperPlaneSharp, heartOutline, heartSharp, archiveOutline, archiveSharp, trashOutline, trashSharp, warningOutline, warningSharp, bookmarkOutline, bookmarkSharp, addCircleOutline, addCircleSharp, notificationsOutline, notificationsSharp, personCircleOutline, personCircleSharp, logOutOutline, logOutSharp, documentLockOutline, documentLockSharp, chatbubbles, chatbubblesOutline });
@@ -68,11 +63,10 @@ export class AppComponent {
       
       if (result && result.status === true) {
         this.connected = true;
-        this.menuShow = true;
         this.router.navigate(['/']);
         this.nom = result.data.name
         this.email = result.data.email
-        if( result.type == 'pro' ) this.labels = this.listes;
+        if( result.type == 'pro' ) this.showLogout = true;
       } else if (result.status == 0) {
         this.connected = false;
         this.showAlert('Misy olana ny fifandraisana...');
@@ -95,5 +89,10 @@ export class AppComponent {
     await alert.present();
     const { role } = await alert.onDidDismiss();
     // console.log(data.values[0]);
+  }
+
+  logout() {
+    localStorage.clear();
+    this.router.navigate(['/login']);
   }
 }
