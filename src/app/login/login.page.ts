@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MenuController, AlertController } from '@ionic/angular';
 import { catchError, of } from 'rxjs';
 import { AppComponent } from '../app.component';
+import { LoadingComponent } from '../component/loading/loading.component';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ import { AppComponent } from '../app.component';
   styleUrls: ['./login.page.scss'],
   standalone: true,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonInput, IonButton, RouterModule, HttpClientModule],
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonInput, IonButton, RouterModule, HttpClientModule, LoadingComponent],
 })
 export class LoginPage implements OnInit {
 
@@ -39,19 +40,19 @@ export class LoginPage implements OnInit {
       )
       .subscribe(async (result: any) => {
         if(result && result.status) {
-          this.showLoading = true;
+          this.showLoading = false;
           localStorage.setItem('authorization', result.token);
           this.service.token = result.token;
           this.app.nom = result.data.name;
           this.router.navigate(['/']);
           // reload the page
         } else {
-          this.showLoading = true;
+          this.showLoading = false;
           this.service.showToast('Misy olana amin\'ny fifandraisana...')
         }
       });
     } else {
-      this.showLoading = true;
+      this.showLoading = false;
       this.service.showToast('Fenoy ny anarana hoentinao. Oh: Ankoay29 ...');
     }
   }

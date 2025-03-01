@@ -67,7 +67,7 @@ export class AppComponent {
         this.showMenu = true;
         this.nom = result.data.name
         this.email = result.data.email
-        this.router.navigate(['/']);
+        // this.router.navigate(['/']);
         if( result.type == 'pro' ) this.showLogout = true;
       } else if (result.status == 0) {
         this.connected = false;

@@ -9,7 +9,7 @@
 
   <div *ngIf="data && data.length!=0" class="content">
 
-    <ion-card *ngFor="let item of data">
+    <ion-card *ngFor="let item of data" routerLink="/detail/{{item.id}}">
       <ion-card-content>
         <div class="badge"> <ion-badge><ion-icon name="heart-outline"></ion-icon> {{ item.Reactions.length }}</ion-badge> <ion-badge color="success"><ion-icon name="chatbubbles-outline"></ion-icon> {{ item.Responses.length }}</ion-badge></div>
         <p>

@@ -84,6 +84,12 @@ export class ServiceService {
       { headers: {authorization: this.token}}
     );
   }
+
+  findAnkamantatraAt(ankamantatraId: number) {
+    return this.http.get(`${this.url}/ankamantatras/${ankamantatraId}`, 
+      { headers: {authorization: this.token}}
+    );
+  }
   
   findAllCategory() {
     return this.http.get(`${this.url}/category`, 

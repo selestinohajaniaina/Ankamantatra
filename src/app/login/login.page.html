@@ -7,6 +7,4 @@
   </div>
   <div class="div-bottom" [routerLink]="'/login-pro'">Manana kaonty manokana ?</div>
 </div>
-<div class="loading-container" *ngIf="showLoading">
-  <ion-spinner name="lines-sharp"></ion-spinner>
-</div>
+<app-loading *ngIf="showLoading"/>

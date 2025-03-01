@@ -4,13 +4,14 @@ import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonBackButton, IonCard, IonCardContent, IonBadge, IonIcon } from '@ionic/angular/standalone';
 import { Ankamantatra } from '../interfaces/Ankamantatra';
 import { ServiceService } from '../services/service.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-created',
   templateUrl: './created.page.html',
   styleUrls: ['./created.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonBackButton, IonCard, IonCardContent, IonBadge, IonIcon]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonBackButton, IonCard, IonCardContent, IonBadge, IonIcon, RouterLink]
 })
 export class CreatedPage implements OnInit {
 

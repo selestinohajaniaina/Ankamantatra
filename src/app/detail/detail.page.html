@@ -1,0 +1,36 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-back-button slot="start" defaultHref="/"></ion-back-button>
+    <ion-title>{{ ankamantatra ? ankamantatra.User.name : '' }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+    <ion-card>
+      <ion-card-content>
+        <div class="date"> <p> {{ ankamantatra ? formatDate(ankamantatra.createdAt) : '' }} </p></div>
+        <p>
+          <span>"</span>
+          {{ ankamantatra ? truncateWords(ankamantatra.content) : '' }}
+          <span>"</span>
+        </p>
+        <div class="badge"> <ion-badge><ion-icon name="heart-outline"></ion-icon> {{ ankamantatra ? ankamantatra.Reactions.length : 0 }}</ion-badge> <ion-badge color="success"><ion-icon name="chatbubbles-outline"></ion-icon> {{ ankamantatra ? ankamantatra.Responses.length : 0 }}</ion-badge></div>
+      </ion-card-content>
+    </ion-card>
+
+    <div *ngIf="ankamantatra">
+      <div class="responses" *ngFor="let item of ankamantatra.Responses">
+        <div class="name-logo">{{ formatName(item.User.name) }}</div>
+        <div class="content">
+          <div class="name">{{ item.User.name }} - <span class="date">{{ formatDate(item.createdAt) }}</span> </div>
+          <div class="content-response">
+            {{ item.content }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+</ion-content>
+
+<app-loading *ngIf="!ankamantatra"/>
