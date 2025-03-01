@@ -4,13 +4,14 @@ import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonBackButton, IonCard, IonCardContent, IonBadge, IonIcon } from '@ionic/angular/standalone';
 import { ServiceService } from '../services/service.service';
 import { Enregistrement } from '../interfaces/enregistrement';
+import { LoadingComponent } from '../component/loading/loading.component';
 
 @Component({
   selector: 'app-saved',
   templateUrl: './saved.page.html',
   styleUrls: ['./saved.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonBackButton, IonCard, IonCardContent, IonBadge, IonIcon]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonBackButton, IonCard, IonCardContent, IonBadge, IonIcon, LoadingComponent]
 })
 export class SavedPage implements OnInit {
 

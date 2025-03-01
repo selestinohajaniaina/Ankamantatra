@@ -6,13 +6,14 @@ import { Ankamantatra } from '../interfaces/Ankamantatra';
 import { ServiceService } from '../services/service.service';
 import { RouterLink } from '@angular/router';
 import { AppComponent } from '../app.component';
+import { LoadingComponent } from '../component/loading/loading.component';
 
 @Component({
   selector: 'app-created',
   templateUrl: './created.page.html',
   styleUrls: ['./created.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonBackButton, IonCard, IonCardContent, IonBadge, IonIcon, RouterLink]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonBackButton, IonCard, IonCardContent, IonBadge, IonIcon, RouterLink, LoadingComponent]
 })
 export class CreatedPage implements OnInit {
 
