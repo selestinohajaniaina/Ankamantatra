@@ -7,6 +7,7 @@ import { AlertController, MenuController, Platform } from '@ionic/angular';
 import { ServiceService } from '../services/service.service';
 import { catchError, of } from 'rxjs';
 import { LoadingComponent } from '../component/loading/loading.component';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-login-pro',
@@ -21,7 +22,7 @@ export class LoginProPage implements OnInit {
   public password!: string;
   public showLoading: boolean = false;
 
-  constructor( private alert: AlertController, private service: ServiceService, private router: Router, private menu: MenuController, private plateform: Platform ) {
+  constructor( private alert: AlertController, private service: ServiceService, private router: Router, private menu: MenuController, private plateform: Platform, private app: AppComponent ) {
     // this.menu.enable(false, 'my-menu');
   }
 
@@ -53,6 +54,8 @@ export class LoginProPage implements OnInit {
         .subscribe(async (result: any) => {
           if(result && result.status) {
             localStorage.setItem('authorization', result.token);
+            this.app.nom = result.data.name;
+            this.app.email = result.data.email;
             this.router.navigate(['/']);
             this.showLoading = false;
           } else if(result && result.token == null && result.data == null) {

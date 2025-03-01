@@ -11,13 +11,13 @@
 
     <ion-card *ngFor="let item of data">
       <ion-card-content>
-        <div class="badge"> <ion-badge><ion-icon name="heart-outline"></ion-icon> 99</ion-badge> <ion-badge color="success"><ion-icon name="chatbubbles-outline"></ion-icon> 99</ion-badge></div>
+        <div class="badge"> <ion-badge><ion-icon name="heart-outline"></ion-icon> {{ item.Ankamantatra.Reactions.length }}</ion-badge> <ion-badge color="success"><ion-icon name="chatbubbles-outline"></ion-icon> {{ item.Ankamantatra.Responses.length }}</ion-badge></div>
         <p>
           <span>"</span>
           {{ truncateWords(item.Ankamantatra.content) }}
           <span>"</span>
         </p>
-        <div class="profil"> <p>{{ truncateName(item.User.name) }}</p></div>
+        <div class="profil"> <p>{{ truncateName(item.Ankamantatra.User.name) }}</p></div>
       </ion-card-content>
     </ion-card>
 

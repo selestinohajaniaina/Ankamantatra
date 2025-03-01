@@ -20,7 +20,7 @@ export class AppComponent {
     { title: 'Ankamantatra', url: '/folder/Ankamantatra', icon: 'earth' },
     { title: 'Hanontany', url: '/Hanontany', icon: 'add-circle' },
     { title: 'Notahirizina', url: '/saved', icon: 'bookmark' },
-    { title: 'Natao', url: '/folder/Natao', icon: 'archive' },
+    { title: 'Natao', url: '/created', icon: 'archive' },
     { title: 'Fampahafantarana', url: '/folder/fampahafantarana', icon: 'notifications' },
     { title: 'Hilaza olana', url: 'contact', icon: 'warning' },
   ];

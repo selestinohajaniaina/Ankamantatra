@@ -39,4 +39,8 @@ export const routes: Routes = [
     path: 'rule',
     loadComponent: () => import('./rule/rule.page').then( m => m.RulePage)
   },
+  {
+    path: 'created',
+    loadComponent: () => import('./created/created.page').then( m => m.CreatedPage)
+  },
 ];

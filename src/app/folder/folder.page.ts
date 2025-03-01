@@ -77,7 +77,7 @@ export class FolderPage implements OnInit {
         if(result.status) {
           this.myId = result.uid;
           this.data = result.data;
-          console.log(this.data);
+          // console.log(this.data);
         }
       })
     }
@@ -101,7 +101,7 @@ export class FolderPage implements OnInit {
       this.service.saveAnswer(ankamantatra.id, answer)
         .subscribe((result: any) => {
           if(result.status) {
-            console.log(result.message);
+            // console.log(result.message);
             event.target.nextElementSibling.textContent = result.data == 0 ? '' : result.data;
           }
         })

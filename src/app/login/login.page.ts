@@ -22,7 +22,7 @@ export class LoginPage implements OnInit {
   public username!: string;
   public showLoading: boolean = false;
 
-  constructor(private service: ServiceService, private router: Router, private alert: AlertController, private menu: MenuController) { }
+  constructor(private service: ServiceService, private router: Router, private alert: AlertController, private menu: MenuController, private app: AppComponent) { }
 
   async ngOnInit() {
     this.menu.enable(false, "myMenu");
@@ -39,15 +39,19 @@ export class LoginPage implements OnInit {
       )
       .subscribe(async (result: any) => {
         if(result && result.status) {
+          this.showLoading = true;
           localStorage.setItem('authorization', result.token);
           this.service.token = result.token;
+          this.app.nom = result.data.name;
           this.router.navigate(['/']);
           // reload the page
         } else {
-          this.showAlert('Misy olana amin\'ny fifandraisana...')
+          this.showLoading = true;
+          this.service.showToast('Misy olana amin\'ny fifandraisana...')
         }
       });
     } else {
+      this.showLoading = true;
       this.service.showToast('Fenoy ny anarana hoentinao. Oh: Ankoay29 ...');
     }
   }

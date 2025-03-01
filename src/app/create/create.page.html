@@ -11,7 +11,7 @@
     <ion-card-content>
       <ion-card-subtitle>Mametraha ankamantatra ho an'ireo namana mpikambana ato.</ion-card-subtitle> <br>
       <ion-textarea color="success" [(ngModel)]="textContent" (change)="textContentChange()" label="Inona ary izany? ..." [autoGrow]="true" labelPlacement="floating" fill="outline" placeholder="Adikao eto..."></ion-textarea> <br>
-      <ion-card-subtitle>Valiny (afaka mbola tsy fenoina)</ion-card-subtitle>
+      <ion-card-subtitle>Valiny</ion-card-subtitle>
       <ion-input label="Valiny" [(ngModel)]="response" color="success" label-placement="floating" fill="outline" placeholder="Adikao eto ..."></ion-input>
         <ion-select label="Sokajy" *ngIf="categoryList" [(ngModel)]="category" placeholder="Faritra">
           <ion-select-option *ngFor="let item of categoryList" [value]="item.id">{{item.region}}</ion-select-option>

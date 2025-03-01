@@ -1,0 +1,33 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-back-button slot="start" defaultHref="/"></ion-back-button>
+    <ion-title>Natao</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <div *ngIf="data && data.length!=0" class="content">
+
+    <ion-card *ngFor="let item of data">
+      <ion-card-content>
+        <div class="badge"> <ion-badge><ion-icon name="heart-outline"></ion-icon> {{ item.Reactions.length }}</ion-badge> <ion-badge color="success"><ion-icon name="chatbubbles-outline"></ion-icon> {{ item.Responses.length }}</ion-badge></div>
+        <p>
+          <span>"</span>
+          {{ truncateWords(item.content) }}
+          <span>"</span>
+        </p>
+        <div class="profil"> <p>{{ formatDate(item.createdAt) }}</p></div>
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+
+  <div *ngIf="data && data.length == 0" class="content-vide">
+    <div>
+      <ion-icon size="large" name="archive-outline"></ion-icon>
+      <p>Tsy mbola nametraka ankamantatra</p>
+    </div>
+  </div>
+
+</ion-content>
