@@ -28,6 +28,7 @@ export class FolderPage implements OnInit {
   private activatedRoute = inject(ActivatedRoute);
   public data!: Ankamantatra[];
   public myId!: number;
+  public counter: number = 0;
 
   constructor(
     private alert: AlertController,
@@ -83,9 +84,19 @@ export class FolderPage implements OnInit {
     }
     
   onSlideChange(event: any) {
-    const swiper = event.swiper; // Récupère l'instance Swiper
-    // this.data = this.data.concat(result.data);
-    console.log('Slide changed! Active index:', event[0]);
+    this.counter += 1;
+    if (this.counter == this.data.length) {
+      this.service.findAnkamantatras()
+        .subscribe((result: any) => {
+          if(result && result.status) {
+            let nextData: Ankamantatra[] =  this.data.concat(result.data);
+            this.data = nextData;
+            console.log(this.data, result.data);
+            
+          }
+        })
+    }
+    console.log(`number ${this.counter} : data length ${this.data.length}`);
   }
 
   like(ankamantatraId: number, event: any) {
