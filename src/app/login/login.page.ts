@@ -48,12 +48,12 @@ export class LoginPage implements OnInit {
           // reload the page
         } else {
           this.showLoading = false;
-          this.service.showToast('Misy olana amin\'ny fifandraisana...')
+          this.app.showToast('Misy olana amin\'ny fifandraisana...')
         }
       });
     } else {
       this.showLoading = false;
-      this.service.showToast('Fenoy ny anarana hoentinao. Oh: Ankoay29 ...');
+      this.app.showToast('Fenoy ny anarana hoentinao. Oh: Ankoay29 ...');
     }
   }
 

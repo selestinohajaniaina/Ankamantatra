@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonBackButton, IonCard, IonCardContent, IonTextarea, IonButton } from '@ionic/angular/standalone';
 import { Router, RouterModule } from '@angular/router';
 import { ServiceService } from '../services/service.service';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-contact',
@@ -16,7 +17,7 @@ export class ContactPage implements OnInit {
 
   public feedBackMessage!: string;
 
-  constructor(private service: ServiceService, private router: Router) { }
+  constructor(private service: ServiceService, private router: Router, private app: AppComponent) { }
 
   ngOnInit() {
   }
@@ -26,14 +27,14 @@ export class ContactPage implements OnInit {
       this.service.sendFeedBack(this.feedBackMessage)
         .subscribe((result: any) => {
           if(result.status) {
-            this.service.showToast(result.message);
+            this.app.showToast(result.message);
             this.router.navigate(['/']);
           } else {
-            this.service.showToast('Misy olana amin\'ny fandefasana hafatra.')
+            this.app.showToast('Misy olana amin\'ny fandefasana hafatra.')
           }
         });
     } else {
-      this.service.showToast('Soraty ny sosokevitrao ...')
+      this.app.showToast('Soraty ny sosokevitrao ...')
     }
   }
 

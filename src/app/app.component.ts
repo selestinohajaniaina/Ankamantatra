@@ -7,13 +7,14 @@ import { paperPlaneOutline, paperPlaneSharp, heartOutline, heartSharp, archiveOu
 import { ServiceService } from './services/service.service';
 import { catchError, of } from 'rxjs';
 import { AlertController } from '@ionic/angular';
+import { ToastComponent } from './component/toast/toast.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, CommonModule, IonApp, IonSplitPane, IonMenu, IonContent, IonList, IonListHeader, IonNote, IonMenuToggle, IonItem, IonIcon, IonLabel, IonRouterLink, IonRouterOutlet, IonSpinner, IonText],
+  imports: [RouterLink, RouterLinkActive, CommonModule, IonApp, IonSplitPane, IonMenu, IonContent, IonList, IonListHeader, IonNote, IonMenuToggle, IonItem, IonIcon, IonLabel, IonRouterLink, IonRouterOutlet, IonSpinner, IonText, ToastComponent],
 })
 export class AppComponent {
   public appPages = [
@@ -34,6 +35,8 @@ export class AppComponent {
   public email!: string;
   public showLogout: boolean = false;
   public showMenu!: boolean;
+  public isToastShow: boolean = false;
+  public toastText!: string;
 
   constructor(private router: Router, private service: ServiceService, private alert: AlertController) {
     addIcons({ earthOutline, earthSharp, paperPlaneOutline, paperPlaneSharp, heartOutline, heartSharp, archiveOutline, archiveSharp, trashOutline, trashSharp, warningOutline, warningSharp, bookmarkOutline, bookmarkSharp, addCircleOutline, addCircleSharp, notificationsOutline, notificationsSharp, personCircleOutline, personCircleSharp, logOutOutline, logOutSharp, documentLockOutline, documentLockSharp, chatbubbles, chatbubblesOutline });
@@ -67,13 +70,13 @@ export class AppComponent {
         this.showMenu = true;
         this.nom = result.data.name
         this.email = result.data.email
-        // this.router.navigate(['/']);
+        this.router.navigate(['/']);
         if( result.type == 'pro' ) this.showLogout = true;
       } else if (result.status == 0) {
         this.connected = false;
         this.showAlert('Misy olana ny fifandraisana...');
       } else {
-        this.service.showToast('Miverina miditra');
+        this.showToast('Miverina miditra');
         this.connected = true;
         this.router.navigate(['/login']);
       }
@@ -93,8 +96,9 @@ export class AppComponent {
     // console.log(data.values[0]);
   }
 
-  logout() {
-    localStorage.clear();
-    this.router.navigate(['/login']);
+  showToast(text: string) {
+    this.isToastShow = true;
+    this.toastText = text;
+    setTimeout(() => { this.isToastShow = false }, 2000);
   }
 }

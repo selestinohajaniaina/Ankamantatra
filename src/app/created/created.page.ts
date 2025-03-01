@@ -5,6 +5,7 @@ import { IonContent, IonHeader, IonTitle, IonToolbar, IonBackButton, IonCard, Io
 import { Ankamantatra } from '../interfaces/Ankamantatra';
 import { ServiceService } from '../services/service.service';
 import { RouterLink } from '@angular/router';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-created',
@@ -17,7 +18,7 @@ export class CreatedPage implements OnInit {
 
   public data!: Ankamantatra[];
 
-  constructor(private service: ServiceService) { }
+  constructor(private service: ServiceService, private app: AppComponent) { }
 
   ngOnInit() {
     this.findAllCreated();
@@ -48,7 +49,7 @@ export class CreatedPage implements OnInit {
         if(result && result.status == true) {
           this.data = result.data;
         } else {
-          this.service.showToast('Misy olana ...');
+          this.app.showToast('Misy olana ...');
         }
       })
   }

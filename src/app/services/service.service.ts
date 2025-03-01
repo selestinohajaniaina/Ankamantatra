@@ -11,16 +11,8 @@ export class ServiceService {
   private url: string = environment.url;
   public token: any;
 
-  constructor(private http: HttpClient, private toast: ToastController) {
+  constructor(private http: HttpClient) {
     this.token = localStorage.getItem('authorization');
-  }
-
-  async showToast(_message: string) {
-    const _toast = await this.toast.create({
-      message: _message,
-      duration: 2000
-    });
-    _toast.present();
   }
 
   createUser(name: string) {

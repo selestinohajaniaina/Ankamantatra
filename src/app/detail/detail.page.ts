@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ServiceService } from '../services/service.service';
 import { Ankamantatra } from '../interfaces/Ankamantatra';
 import { LoadingComponent } from '../component/loading/loading.component';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-detail',
@@ -19,7 +20,7 @@ export class DetailPage implements OnInit {
   private ankamantatraId!: number;
   public ankamantatra!: Ankamantatra;
 
-  constructor(private activatedRoute: ActivatedRoute, private service: ServiceService) { }
+  constructor(private activatedRoute: ActivatedRoute, private service: ServiceService, private app: AppComponent) { }
 
   ngOnInit() {
     this.ankamantatraId = parseInt(this.activatedRoute.snapshot.paramMap.get('id') as string);
@@ -55,7 +56,7 @@ export class DetailPage implements OnInit {
         if(result && result.status == true) {
           this.ankamantatra = result.data;
         } else {
-          this.service.showToast('Misy olana ...');
+          this.app.showToast('Misy olana ...');
         }
       })
   }

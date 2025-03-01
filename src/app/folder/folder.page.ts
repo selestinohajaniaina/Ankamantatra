@@ -68,7 +68,7 @@ export class FolderPage implements OnInit {
     // console.log(data.values[0]);
     if(role == 'valider') {
       if(data.values[0]) this.verifyAnswer(ankamantatra, data.values[0], event);
-      else this.service.showToast('Tsy misy valiny nampidirina');
+      else this.app.showToast('Tsy misy valiny nampidirina');
     }
   }
 
@@ -107,8 +107,8 @@ export class FolderPage implements OnInit {
   }
 
   verifyAnswer(ankamantatra: Ankamantatra, answer: string, event: any) {
-      if(answer.toLowerCase() == ankamantatra.response ) this.service.showToast('Marina ny valiny');
-      else this.service.showToast('Diso ny valinteninao');
+      if(answer.toLowerCase() == ankamantatra.response ) this.app.showToast('Marina ny valiny');
+      else this.app.showToast('Diso ny valinteninao');
       this.service.saveAnswer(ankamantatra.id, answer)
         .subscribe((result: any) => {
           if(result.status) {
@@ -122,7 +122,7 @@ export class FolderPage implements OnInit {
     this.service.saveAnkamantatras(ankamantatraId)
       .subscribe((result: any) => {
         if(result.status == true) {
-          this.service.showToast(result.message);
+          this.app.showToast(result.message);
           event.target.nextElementSibling.textContent = result.data == 0 ? '' : result.data;
         }
       })

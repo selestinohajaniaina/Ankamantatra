@@ -59,15 +59,15 @@ export class LoginProPage implements OnInit {
             this.router.navigate(['/']);
             this.showLoading = false;
           } else if(result && result.token == null && result.data == null) {
-            this.service.showToast(result.message);
+            this.app.showToast(result.message);
             this.showLoading = false;
           } else {
-            this.showAlert('Misy olana amin\'ny fifandraisana...')
+            this.app.showToast('Misy olana amin\'ny fifandraisana...')
             this.showLoading = false;
           }
         });
       } else {
-        this.service.showToast('Fenoy daholo...');
+        this.app.showToast('Fenoy daholo...');
         this.showLoading = false;
       }
     }

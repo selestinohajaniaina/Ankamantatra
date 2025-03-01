@@ -5,6 +5,7 @@ import { IonContent, IonHeader, IonTitle, IonToolbar, IonTextarea, IonCard, IonC
 import { NavController } from "@ionic/angular";
 import { ServiceService } from '../services/service.service';
 import { Router } from '@angular/router';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-create',
@@ -24,7 +25,7 @@ export class CreatePage implements OnInit {
     createdAt: string
   }[];
 
-  constructor(private nav: NavController, private service: ServiceService, private router: Router) { }
+  constructor(private nav: NavController, private service: ServiceService, private router: Router, private app: AppComponent) { }
 
   ngOnInit() {
     this.initCategory();
@@ -57,11 +58,11 @@ export class CreatePage implements OnInit {
           this.textContent = '';
           this.response = '';
           this.textContentChange();
-          this.service.showToast(result.message)
+          this.app.showToast(result.message)
           this.router.navigate(['/']);
         })
     } else {
-      this.service.showToast('Soraty ny ankamantatrao sy ny valiny...')
+      this.app.showToast('Soraty ny ankamantatrao sy ny valiny...')
     }
   }
 

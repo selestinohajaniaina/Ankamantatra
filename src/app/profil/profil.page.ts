@@ -5,6 +5,7 @@ import { IonContent, IonHeader, IonTitle, IonToolbar, IonBackButton, IonInput, I
 import { Router, RouterModule } from '@angular/router';
 import { User } from '../interfaces/User';
 import { ServiceService } from '../services/service.service';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-profil',
@@ -20,7 +21,7 @@ export class ProfilPage implements OnInit {
   public email!: string;
   public password!: string;
 
-  constructor(private service: ServiceService, private router: Router) { }
+  constructor(private service: ServiceService, private router: Router, private app: AppComponent) { }
 
   ngOnInit() {
     this.myData();
@@ -40,12 +41,12 @@ export class ProfilPage implements OnInit {
       this.service.updateMyProfil(this.name, this.email, this.password)
         .subscribe((result: any) => {
           if(result && result.status) {
-            this.service.showToast('Tontosa ny fanovana ...');
+            this.app.showToast('Tontosa ny fanovana ...');
             this.router.navigate(['/']);
           }
         })
     } else {
-      this.service.showToast('Fenoy daholo ...');
+      this.app.showToast('Fenoy daholo ...');
     }
   }
 
