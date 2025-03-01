@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { AlertController } from '@ionic/angular';
 import { ServiceService } from '../services/service.service';
 import { Ankamantatra } from '../interfaces/Ankamantatra';
+import { AppComponent } from '../app.component';
 
 SwiperCore.use([Navigation]);
 
@@ -30,11 +31,14 @@ export class FolderPage implements OnInit {
 
   constructor(
     private alert: AlertController,
-    private service: ServiceService
+    private service: ServiceService,
+    private app: AppComponent
   ) {}
 
   ngOnInit() {
     this.folder = this.activatedRoute.snapshot.paramMap.get('id') as string;
+    this.service.token = localStorage.getItem('authorization');
+    this.app.showMenu = true;
     // this.data = [
     //   {question: "Tsy omby, tsy ondry nefa mahalala ny maintso hohanina."},
     //   {question: "Izy mivady no miady ka ny ankizy no voapotsipotsika."},

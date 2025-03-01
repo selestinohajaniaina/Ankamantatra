@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonInput, IonButton } from '@ionic/angular/standalone';
 import { Router, RouterModule } from '@angular/router';
 import { ServiceService } from '../services/service.service';
 import { HttpClientModule } from '@angular/common/http';
-import { LoadingController, AlertController } from '@ionic/angular';
+import { MenuController, AlertController } from '@ionic/angular';
 import { catchError, of } from 'rxjs';
 import { AppComponent } from '../app.component';
 
@@ -14,26 +14,22 @@ import { AppComponent } from '../app.component';
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
   standalone: true,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonInput, IonButton, RouterModule, HttpClientModule],
 })
 export class LoginPage implements OnInit {
 
   public username!: string;
+  public showLoading: boolean = false;
 
-  constructor(private service: ServiceService, private router: Router, private loading: LoadingController, private alert: AlertController) { }
+  constructor(private service: ServiceService, private router: Router, private alert: AlertController, private menu: MenuController) { }
 
   async ngOnInit() {
+    this.menu.enable(false, "myMenu");
   }
 
   async login() {
-    console.log('ckiker ito');
-    
-    const loading = await this.loading.create({ message: 'Test ...' });
-    await loading.present();
-    setTimeout(async () => { await loading.dismiss(); }, 3000);
-    
-    console.log('tonga eto ito');
-
+    this.showLoading = true;
     if(this.username) {
       this.service.createUser(this.username)
       .pipe(
@@ -43,27 +39,19 @@ export class LoginPage implements OnInit {
       )
       .subscribe(async (result: any) => {
         if(result && result.status) {
-          (await loading).dismiss();
           localStorage.setItem('authorization', result.token);
           this.service.token = result.token;
           this.router.navigate(['/']);
           // reload the page
         } else {
-          (await loading).dismiss();
           this.showAlert('Misy olana amin\'ny fifandraisana...')
         }
       });
     } else {
-      (await loading).dismiss();
       this.service.showToast('Fenoy ny anarana hoentinao. Oh: Ankoay29 ...');
     }
   }
 
-  async showLoading() {
-    return await this.loading.create({
-      message: 'Fanamarinana ...',
-    });
-  }
 
   async showAlert(text: string) {
     const alert = await this.alert.create({

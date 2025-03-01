@@ -25,7 +25,7 @@ export class AppComponent {
     { title: 'Hilaza olana', url: 'contact', icon: 'warning' },
   ];
   public liste = [
-    {title: 'Fitsipika', url: '/rule', icon: 'document-lock'},
+    {title: 'Vakiana', url: '/rule', icon: 'document-lock'},
     {title: 'Kaonty', url: '/profil', icon: 'person-circle'},
   ];
   public connected: boolean = false;
@@ -33,6 +33,7 @@ export class AppComponent {
   public nom!: string;
   public email!: string;
   public showLogout: boolean = false;
+  public showMenu!: boolean;
 
   constructor(private router: Router, private service: ServiceService, private alert: AlertController) {
     addIcons({ earthOutline, earthSharp, paperPlaneOutline, paperPlaneSharp, heartOutline, heartSharp, archiveOutline, archiveSharp, trashOutline, trashSharp, warningOutline, warningSharp, bookmarkOutline, bookmarkSharp, addCircleOutline, addCircleSharp, notificationsOutline, notificationsSharp, personCircleOutline, personCircleSharp, logOutOutline, logOutSharp, documentLockOutline, documentLockSharp, chatbubbles, chatbubblesOutline });
@@ -63,9 +64,10 @@ export class AppComponent {
       
       if (result && result.status === true) {
         this.connected = true;
-        this.router.navigate(['/']);
+        this.showMenu = true;
         this.nom = result.data.name
         this.email = result.data.email
+        this.router.navigate(['/']);
         if( result.type == 'pro' ) this.showLogout = true;
       } else if (result.status == 0) {
         this.connected = false;
