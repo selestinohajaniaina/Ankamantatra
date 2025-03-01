@@ -29,7 +29,7 @@ export class LoginProPage implements OnInit {
     this.plateform.ready().then(() => {
     this.menu.enable(true);
     });
-    console.log(this.menu.get('myMenu'));
+    // console.log(this.menu.get('myMenu'));
     
   }
 

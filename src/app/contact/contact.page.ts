@@ -32,6 +32,8 @@ export class ContactPage implements OnInit {
             this.service.showToast('Misy olana amin\'ny fandefasana hafatra.')
           }
         });
+    } else {
+      this.service.showToast('Soraty ny sosokevitrao ...')
     }
   }
 

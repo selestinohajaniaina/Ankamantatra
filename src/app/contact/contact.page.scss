@@ -9,6 +9,13 @@ ion-title, ion-button, ion-textarea, ion-select, ion-select-option {
 ion-button {
     text-transform: capitalize;
     --color: white;
+    max-width: 500px;
+    margin: 5px auto;
+}
+
+ion-card {
+    max-width: 500px;
+    margin: 20px auto;
 }
 
 .annuler {
