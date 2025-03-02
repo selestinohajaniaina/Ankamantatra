@@ -1,4 +1,4 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, CUSTOM_ELEMENTS_SCHEMA, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IonHeader, IonToolbar, IonButtons, IonMenuButton, IonTitle, IonContent, IonIcon, IonSpinner } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
@@ -10,6 +10,7 @@ import { AlertController } from '@ionic/angular';
 import { ServiceService } from '../services/service.service';
 import { Ankamantatra } from '../interfaces/Ankamantatra';
 import { AppComponent } from '../app.component';
+import { catchError, of } from 'rxjs';
 
 SwiperCore.use([Navigation]);
 
@@ -33,7 +34,8 @@ export class FolderPage implements OnInit {
   constructor(
     private alert: AlertController,
     private service: ServiceService,
-    private app: AppComponent
+    private app: AppComponent,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
@@ -85,18 +87,22 @@ export class FolderPage implements OnInit {
     
   onSlideChange(event: any) {
     this.counter += 1;
-    if (this.counter == this.data.length) {
+    if (this.counter === this.data.length) {
       this.service.findAnkamantatras()
+        .pipe(
+          catchError((error: any) => {
+            return of(error);
+          })
+        )
         .subscribe((result: any) => {
-          if(result && result.status) {
-            let nextData: Ankamantatra[] =  this.data.concat(result.data);
-            this.data = nextData;
-            // console.log(this.data, result.data);
-            
+          if(result && result.status == true) {
+            this.data = [...this.data, ...result.data];
+            this.cdr.detectChanges();
+          } else {
+            this.app.showToast('Tapaka ny fifandraisana');
           }
         })
     }
-    console.log(`number ${this.counter} : data length ${this.data.length}`);
   }
 
   like(ankamantatraId: number, event: any) {
