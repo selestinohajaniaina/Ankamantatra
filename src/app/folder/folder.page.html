@@ -10,8 +10,8 @@
 <div class="ion-content" scroll-y="false">
   <swiper [slidesPerView]="1" [direction]="'vertical'" (slideChange)="onSlideChange($event)" #swiperInstance>
 
-    <ng-template *ngFor="let item of data" swiperSlide>
-      <div id="video-container" style="background-image: url('assets/img/exemple.jpeg');">
+    <ng-template *ngFor="let item of data; let i = index" swiperSlide>
+      <div id="video-container" style="background-image: url('assets/img/{{ i % 3 == 0 ? 3 : i % 2 == 0 ? 2 : 1 }}.jpg');">
         <div class="action-buttons">
           <div class="icon" (click)="like(item.id, $event)"><ion-icon name="heart"></ion-icon> <span>{{ item.Reactions.length == 0 ? '' : item.Reactions.length }}</span></div>
           <div class="icon" (click)="answer(item, $event)"><ion-icon name="chatbubbles"></ion-icon> <span>{{ item.Responses.length == 0 ? '' : item.Responses.length }}</span></div>

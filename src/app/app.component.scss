@@ -127,9 +127,14 @@ ion-item.selected, ion-list-header {
 
 #container {
   height: 100vh;
-  width: fit-content;
+  // width: fit-content;
   display: flex;
-  align-items: center;
+  align-items: end;
+  justify-content: center;
   gap: 5px;
-  margin: 10% auto;
+  padding-bottom: 10px;
+  background-image: url('../assets/img/children-round.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: clamp(100px, 300px, 500px);
 }

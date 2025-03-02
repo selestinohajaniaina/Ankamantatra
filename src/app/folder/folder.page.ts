@@ -107,7 +107,7 @@ export class FolderPage implements OnInit {
   }
 
   verifyAnswer(ankamantatra: Ankamantatra, answer: string, event: any) {
-      if(answer.toLowerCase() == ankamantatra.response ) this.app.showToast('Marina ny valiny');
+      if(answer.toLowerCase() == ankamantatra.response.toLowerCase() ) this.app.showToast('Marina ny valiny');
       else this.app.showToast('Diso ny valinteninao');
       this.service.saveAnswer(ankamantatra.id, answer)
         .subscribe((result: any) => {
