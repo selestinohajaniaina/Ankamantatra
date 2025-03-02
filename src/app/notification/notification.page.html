@@ -1,0 +1,31 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-back-button slot="start" defaultHref="/"></ion-back-button>
+    <ion-title>Fampahafantarana</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <div *ngIf="notifications && notifications.length!=0" class="content">
+
+    <ion-card *ngFor="let item of notifications">
+      <ion-card-content [style]="!item.isRead ? 'background: var(--ankamantatra-theme-color-opacity)' : ''">
+        <ion-card-title>{{ getTitle(item.type) }}</ion-card-title>
+        <p><strong>{{ item.User.name }}</strong>, {{ getMessage(item.message, item.type) }}. "{{ truncateWords(item.type, item.Ankamantatra.content) }}"</p>
+        <p>{{ formatDate(item.createdAt) }}</p>
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+
+  <div *ngIf="notifications && notifications.length==0" class="content-vide">
+    <div>
+      <ion-icon size="large" name="notifications-outline"></ion-icon>
+      <p>Miseho eto izay hetsika atao ny mpikambana</p>
+    </div>
+  </div>
+
+</ion-content>
+
+<app-loading *ngIf="!notifications"/>

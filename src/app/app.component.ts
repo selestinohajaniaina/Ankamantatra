@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
-import { IonApp, IonSplitPane, IonMenu, IonContent, IonList, IonListHeader, IonNote, IonMenuToggle, IonItem, IonIcon, IonLabel, IonRouterOutlet, IonRouterLink, IonSpinner, IonText } from '@ionic/angular/standalone';
+import { IonApp, IonSplitPane, IonMenu, IonContent, IonList, IonListHeader, IonNote, IonMenuToggle, IonItem, IonIcon, IonLabel, IonRouterOutlet, IonRouterLink, IonSpinner, IonText, IonBadge } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { paperPlaneOutline, paperPlaneSharp, heartOutline, heartSharp, archiveOutline, archiveSharp, trashOutline, trashSharp, warningOutline, warningSharp, bookmarkOutline, bookmarkSharp, earthSharp, earthOutline, addCircleOutline, addCircleSharp, notificationsOutline, notificationsSharp, personCircleOutline, personCircleSharp, logOutOutline, logOutSharp, documentLockOutline, documentLockSharp, chatbubbles, chatbubblesOutline } from 'ionicons/icons';
 import { ServiceService } from './services/service.service';
@@ -16,16 +16,16 @@ import { Capacitor } from '@capacitor/core';
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, CommonModule, IonApp, IonSplitPane, IonMenu, IonContent, IonList, IonListHeader, IonNote, IonMenuToggle, IonItem, IonIcon, IonLabel, IonRouterLink, IonRouterOutlet, IonSpinner, IonText, ToastComponent],
+  imports: [RouterLink, RouterLinkActive, CommonModule, IonApp, IonSplitPane, IonMenu, IonContent, IonList, IonListHeader, IonNote, IonMenuToggle, IonItem, IonIcon, IonLabel, IonRouterLink, IonRouterOutlet, IonSpinner, IonText, ToastComponent, IonBadge],
 })
 export class AppComponent {
   public appPages = [
-    { title: 'Ankamantatra', url: '/folder/Ankamantatra', icon: 'earth' },
-    { title: 'Hanontany', url: '/Hanontany', icon: 'add-circle' },
-    { title: 'Notahirizina', url: '/saved', icon: 'bookmark' },
-    { title: 'Natao', url: '/created', icon: 'archive' },
-    { title: 'Fampahafantarana', url: '/folder/fampahafantarana', icon: 'notifications' },
-    { title: 'Hilaza olana', url: 'contact', icon: 'warning' },
+    { title: 'Ankamantatra', url: '/folder/Ankamantatra', icon: 'earth', badgeView: false },
+    { title: 'Hanontany', url: '/Hanontany', icon: 'add-circle', badgeView: false },
+    { title: 'Notahirizina', url: '/saved', icon: 'bookmark', badgeView: false },
+    { title: 'Natao', url: '/created', icon: 'archive', badgeView: false },
+    { title: 'Fampahafantarana', url: '/notification', icon: 'notifications', badgeView: true },
+    { title: 'Hilaza olana', url: 'contact', icon: 'warning', badgeView: false },
   ];
   public liste = [
     {title: 'Vakiana', url: '/rule', icon: 'document-lock'},
@@ -39,6 +39,7 @@ export class AppComponent {
   public showMenu!: boolean;
   public isToastShow: boolean = false;
   public toastText!: string;
+  public unReadNotification: number = 0;
 
   constructor(private router: Router, private service: ServiceService, private alert: AlertController) {
     addIcons({ earthOutline, earthSharp, paperPlaneOutline, paperPlaneSharp, heartOutline, heartSharp, archiveOutline, archiveSharp, trashOutline, trashSharp, warningOutline, warningSharp, bookmarkOutline, bookmarkSharp, addCircleOutline, addCircleSharp, notificationsOutline, notificationsSharp, personCircleOutline, personCircleSharp, logOutOutline, logOutSharp, documentLockOutline, documentLockSharp, chatbubbles, chatbubblesOutline });
@@ -71,13 +72,13 @@ export class AppComponent {
       })
     )
     .subscribe((result: any) => {
-      
+      this.countNotifUnRead();
       if (result && result.status === true) {
         this.connected = true;
         this.showMenu = true;
         this.nom = result.data.name
         this.email = result.data.email
-        this.router.navigate(['/']);
+        // this.router.navigate(['/']);
       } else if (result.status == 0) {
         this.connected = false;
         this.showAlert('Tapaka ny fifandraisana...');
@@ -112,4 +113,14 @@ export class AppComponent {
   close() {
     App.exitApp();
   }
+
+  countNotifUnRead() {
+    this.service.countNotificationUnRead()
+    .subscribe((result: any) => {
+      if (result && result.status === true) {
+        this.unReadNotification = result.data;
+      }
+    })
+  }
+
 }

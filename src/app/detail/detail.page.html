@@ -12,7 +12,7 @@
         <div class="date"> <p> {{ ankamantatra ? formatDate(ankamantatra.createdAt) : '' }} </p></div>
         <p>
           <span>"</span>
-          {{ ankamantatra ? truncateWords(ankamantatra.content) : '' }}
+          {{ ankamantatra ? ankamantatra.content : '' }}
           <span>"</span>
         </p>
         <div class="badge"> <ion-badge><ion-icon name="heart-outline"></ion-icon> {{ ankamantatra ? ankamantatra.Reactions.length : 0 }}</ion-badge> <ion-badge color="success"><ion-icon name="chatbubbles-outline"></ion-icon> {{ ankamantatra ? ankamantatra.Responses.length : 0 }}</ion-badge></div>

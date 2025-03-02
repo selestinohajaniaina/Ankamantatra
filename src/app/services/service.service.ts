@@ -103,4 +103,16 @@ export class ServiceService {
     );
   }
 
+  findNotification() {
+    return this.http.get(`${this.url}/notifications`, 
+      { headers: {authorization: this.token}}
+    );
+  }
+
+  countNotificationUnRead() {
+    return this.http.get(`${this.url}/notifications/count`, 
+      { headers: {authorization: this.token}}
+    );
+  }
+
 }

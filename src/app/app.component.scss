@@ -7,6 +7,13 @@ ion-list, ion-menu-toggle, ion-label {
   background: transparent;
 }
 
+ion-menu-toggle {
+  ion-badge {
+    border-radius: 50px;
+    min-width: 20px;
+  }
+}
+
 ion-menu.md ion-content {
   --padding-start: 8px;
   --padding-end: 8px;
