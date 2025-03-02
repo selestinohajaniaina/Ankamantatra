@@ -91,7 +91,7 @@ export class FolderPage implements OnInit {
           if(result && result.status) {
             let nextData: Ankamantatra[] =  this.data.concat(result.data);
             this.data = nextData;
-            console.log(this.data, result.data);
+            // console.log(this.data, result.data);
             
           }
         })

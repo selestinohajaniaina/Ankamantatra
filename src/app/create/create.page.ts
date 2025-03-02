@@ -6,13 +6,14 @@ import { NavController } from "@ionic/angular";
 import { ServiceService } from '../services/service.service';
 import { Router } from '@angular/router';
 import { AppComponent } from '../app.component';
+import { LoadingComponent } from '../component/loading/loading.component';
 
 @Component({
   selector: 'app-create',
   templateUrl: './create.page.html',
   styleUrls: ['./create.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonTextarea, IonCard, IonCardContent, IonButton, IonSelect, IonSelectOption, IonBackButton, IonCardSubtitle, IonInput]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonTextarea, IonCard, IonCardContent, IonButton, IonSelect, IonSelectOption, IonBackButton, IonCardSubtitle, IonInput, LoadingComponent]
 })
 export class CreatePage implements OnInit {
   public textContent!: string | null;
@@ -24,6 +25,7 @@ export class CreatePage implements OnInit {
     updatedAt: string,
     createdAt: string
   }[];
+  public showLoading: boolean = false;
 
   constructor(private nav: NavController, private service: ServiceService, private router: Router, private app: AppComponent) { }
 
@@ -52,16 +54,21 @@ export class CreatePage implements OnInit {
   }
 
   createAnkamantatra() {
+    this.showLoading = true;
     if(this.textContent && this.response) {
       this.service.createAnkamantatra(this.textContent, this.response.toLowerCase(), this.category)
         .subscribe((result: any) => {
-          this.textContent = '';
-          this.response = '';
-          this.textContentChange();
-          this.app.showToast(result.message)
-          this.router.navigate(['/']);
+          if(result && result.status) {
+            this.showLoading = false;
+            this.textContent = '';
+            this.response = '';
+            this.textContentChange();
+            this.app.showToast(result.message)
+            this.router.navigate(['/']);
+          }
         })
     } else {
+      this.showLoading = false;
       this.app.showToast('Soraty ny ankamantatrao sy ny valiny...')
     }
   }
