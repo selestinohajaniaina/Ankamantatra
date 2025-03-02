@@ -8,6 +8,8 @@ import { ServiceService } from './services/service.service';
 import { catchError, of } from 'rxjs';
 import { AlertController } from '@ionic/angular';
 import { ToastComponent } from './component/toast/toast.component';
+import { App } from '@capacitor/app';
+import { Capacitor } from '@capacitor/core';
 
 @Component({
   selector: 'app-root',
@@ -33,7 +35,7 @@ export class AppComponent {
   public labels: { title: string; url: string; icon: string; }[] = this.liste;
   public nom!: string;
   public email!: string;
-  public showLogout: boolean = false;
+  public showLogout: boolean = true;
   public showMenu!: boolean;
   public isToastShow: boolean = false;
   public toastText!: string;
@@ -44,6 +46,11 @@ export class AppComponent {
 
   ngOnInit() {
     this.lookToken();
+
+    const platform = Capacitor.getPlatform();
+    if (platform === 'web') {
+      this.showLogout = false;
+    }
   }
 
   lookToken() {
@@ -71,10 +78,9 @@ export class AppComponent {
         this.nom = result.data.name
         this.email = result.data.email
         this.router.navigate(['/']);
-        if( result.type == 'pro' ) this.showLogout = true;
       } else if (result.status == 0) {
         this.connected = false;
-        this.showAlert('Misy olana ny fifandraisana...');
+        this.showAlert('Tapaka ny fifandraisana...');
       } else {
         this.showToast('Miverina miditra');
         this.connected = true;
@@ -93,12 +99,17 @@ export class AppComponent {
     });
     await alert.present();
     const { role } = await alert.onDidDismiss();
-    // console.log(data.values[0]);
+    if( role == 'quitter' ) this.close();
+    else window.location.reload();
   }
 
   showToast(text: string) {
     this.isToastShow = true;
     this.toastText = text;
     setTimeout(() => { this.isToastShow = false }, 2000);
+  }
+
+  close() {
+    App.exitApp();
   }
 }
