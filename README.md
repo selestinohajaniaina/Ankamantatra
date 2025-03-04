@@ -1,4 +1,5 @@
 ## Ankamantatra
+- NB ANG: "Ankamantatra" is a Malagasy culture, a game played by children every day before going to bed at night. And nowadays, this way is slowly fading due to the evolution of technology. And the App helps the Malagasy to remember their culture.
 
 lalao fametrahana fanontaniana, ary maminavina ny valiny amin'ny alalan'ny famantarana ao anaty fanontaniaina.
 ## Fitsipika: 
@@ -24,3 +25,8 @@ lalao fametrahana fanontaniana, ary maminavina ny valiny amin'ny alalan'ny faman
     cd android
     ./gradlew assembleDebug
 ```
+## The App:
+- web: [ankamantatra.netlify.app](ankamantatra.netlify.app)
+- mobile: [ankamantatra.apk](./ankamantatra.apk)
+## Preview
+<img src='./ankamantatra_image_preview.jpg'>
