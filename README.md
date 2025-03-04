@@ -29,4 +29,4 @@ lalao fametrahana fanontaniana, ary maminavina ny valiny amin'ny alalan'ny faman
 - web: [ankamantatra.netlify.app](ankamantatra.netlify.app)
 - mobile: [ankamantatra.apk](./ankamantatra.apk)
 ## Preview
-<img src='./ankamantatra_image_preview.jpg'>
+<img src='./ankamantatra_image_preview.jpg' width='300px'>
